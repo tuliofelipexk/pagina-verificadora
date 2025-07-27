@@ -3,29 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Verificador</title>
-    <style>
-    body { font-family: sans-serif; margin: 0; padding: 0; }
-    #senha { 
-        font-size: 20px; /* Dobramos o tamanho */
-        padding: 10px; /* Aumentamos o espaçamento interno */
-        width: 30%; /* Faz o campo ocupar quase toda a largura */
-        box-sizing: border-box; /* Garante que o padding não quebre o layout */
-    } 
-    button { 
-        font-size: 20px; /* Dobramos o tamanho */
-        padding: 10px; /* Aumentamos o espaçamento interno */
-        width: 30%; /* Faz o botão ocupar quase toda a largura */
-        margin-top: 10px; /* Adiciona um espaço acima do botão */
-    } 
+   <style>
+    /* Reseta margens e define a fonte para o corpo */
+    body { 
+        font-family: sans-serif; 
+        margin: 0; 
+        padding: 0; 
+    }
+    /* Zera a margem inferior do título para juntar com o campo de texto */
     h3 { 
         font-weight: normal; 
+        font-size: 36px;
         margin-top: 0;
-        font-size: 20px; /* Definimos um tamanho grande para o título */
-        margin-bottom: 20px; /* Adiciona um espaço abaixo do título */
+        margin-bottom: 15px; /* Reduzimos a margem inferior */
     }
+    /* Garante que o input e o botão não tenham margens extras */
+    input, button {
+        margin: 5px 0; /* Adiciona um pequeno espaço vertical, mas zera o horizontal */
+    }
+    #senha { 
+        font-size: 32px;
+        padding: 15px;
+        width: 90%;
+        box-sizing: border-box;
+    } 
+    button { 
+        font-size: 32px;
+        padding: 15px;
+        width: 90%;
+    } 
     #resultado {
-        font-size: 30px; /* Aumentamos também a fonte do resultado */
-        margin-bottom: 20px; /* Adiciona um espaço fonte do resultado */
+        font-size: 28px;
+        margin-top: 15px; /* Define uma margem superior controlada */
     }
 </style>
 </head>
