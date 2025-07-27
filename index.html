@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificador</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 0; }
+        #senha { font-size: 16px; padding: 10px; }
+        button { font-size: 16px; padding: 10px; }
+        h3 { font-weight: normal; margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <div>
+        <h3>Digite o e-mail para descobrir seu login:</h3>
+        <input type="text" id="senha" placeholder="Digite seu e-mail">
+        <button id="botaoAcessar">Acessar</button>
+        <div id="resultado" style="margin-top: 10px; font-weight: bold;"></div>
+    </div>
+
+    <script>
+    // --- PASSO IMPORTANTE ABAIXO ---
+    const apiUrl = 'https://verificador-api.vercel.app/api/verify'; // <-- TROQUE ESTA LINHA!!!
+
+    async function verificar() {
+        const emailInput = document.getElementById('senha');
+        const resultadoDiv = document.getElementById('resultado');
+        const email = emailInput.value.trim();
+
+        if (!email) {
+            resultadoDiv.innerHTML = 'Por favor, digite um e-mail.';
+            resultadoDiv.style.color = 'red';
+            return;
+        }
+
+        resultadoDiv.innerHTML = 'Verificando...';
+        resultadoDiv.style.color = 'gray';
+
+        try {
+            const response = await fetch(`${apiUrl}?email=${encodeURIComponent(email)}`);
+            const data = await response.json();
+
+            if (response.ok) {
+                resultadoDiv.innerHTML = `<strong>Email:</strong> ${data.login}<br><strong>Senha:</strong> ${data.senha}`;
+                resultadoDiv.style.color = 'green';
+            } else {
+                resultadoDiv.innerHTML = `❌ ${data.error}`;
+                resultadoDiv.style.color = 'red';
+            }
+        } catch (error) {
+            resultadoDiv.innerHTML = 'Ocorreu um erro na comunicação. Tente novamente.';
+            resultadoDiv.style.color = 'red';
+        }
+    }
+
+    const botao = document.getElementById('botaoAcessar');
+    if (botao) {
+        botao.addEventListener('click', verificar);
+    }
+    </script>
+
+</body>
+</html>
